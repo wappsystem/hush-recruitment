@@ -8,13 +8,20 @@
       //-------------------------------------
       $('#title__ID').text('Hush Study recruitment - eligible')
       //-------------------------------------
-      var fields="Screening_Number|UID,first_name,last_name,phone,email_address,address";
+      var fields="Screening_Number,Eligible";
       fields+=",age,english,internet,email,insomnia,other_health,cannabis,time";
       fields+=",ISI_1a,ISI_1b,ISI_1c,ISI_2,ISI_3,ISI_4,ISI_5,ISI_1,ISI";
       m.fields=""+fields+",Submit_date,Submitted_by,_Delete";
       //-------------------------------------
       m.load=function(){
         m.query={"Data.first_name": {"$ne" : ""},"Data.ISI_1a":{"$ne":""}}
+      }
+      m.cell_render = function (records, I, field, td, set_value, source) {
+        switch (field) {
+          case 'Screening_Number':
+            td.html("S" + (records[I].UID).toString().padStart(3, "0"));
+            break;
+        }
       }
   }
 </script>
